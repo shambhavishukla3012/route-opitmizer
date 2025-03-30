@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- Map Section -->
+    <div class="col-lg-8">
+        <div class="card shadow-sm h-100">
+            <div class="card-body p-0">
+                <div id="map" style="height: 80vh;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-header d-flex align-items-center">
+                <i data-feather="navigation" class="me-2 text-primary"></i>
+                <h5 class="card-title mb-0">Route Details</h5>
+            </div>
+            <div class="card-body">
+                <form id="routeForm">
+                    <div id="locations">
+                        <div class="mb-3">
+                            <label class="form-label d-flex align-items-center">
+                                <i data-feather="flag" class="me-2 text-success"></i>
+                                Starting Point
+                            </label>
+                            <input type="text" class="form-control location-input" 
+                                   placeholder="Enter address" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="button" id="addLocation" 
+                                class="btn btn-outline-secondary d-flex align-items-center w-100"
+                                onclick="addLocationField()">
+                            <i data-feather="plus" class="me-2"></i>
+                            Add Location
+                        </button>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary d-flex align-items-center w-100 justify-content-center">
+                        <i data-feather="navigation-2" class="me-2"></i>
+                        Optimize Route
+                    </button>
+                </form>
+
+                <div id="results" class="mt-4 d-none">
+                    <h5 class="d-flex align-items-center">
+                        <i data-feather="list" class="me-2 text-primary"></i>
+                        Optimized Route Order
+                    </h5>
+                    <ul id="locationSequence" class="location-sequence"></ul>
+
+                    <div class="route-stats card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2">
+                                <i data-feather="map-pin" class="me-2 text-info"></i>
+                                <strong>Total Distance:</strong>
+                                <span id="totalDistance" class="ms-2"></span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i data-feather="clock" class="me-2 text-info"></i>
+                                <strong>Total Duration:</strong>
+                                <span id="totalDuration" class="ms-2"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="d-flex align-items-center">
+                        <i data-feather="corner-down-right" class="me-2 text-primary"></i>
+                        Turn-by-Turn Directions
+                    </h5>
+                    <div id="directions" class="directions-list"></div>
+                </div>
+
+                <div id="error" class="alert alert-danger mt-3 d-none"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}

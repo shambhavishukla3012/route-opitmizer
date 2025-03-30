@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Optimizer</title>
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUa1zYhlsA6Qw2kMhZf0s0bK2aQ9s2e5z9E+9e5e9e5e5e5e5e5e5e5e5e5e" crossorigin="anonymous">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i data-feather="map" class="me-2"></i>
+                Route Optimizer
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <i data-feather="home" class="me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://openrouteservice.org/" target="_blank">
+                            <i data-feather="info" class="me-1"></i> About
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-light btn-sm" id="themeToggle">
+                        <i data-feather="sun" class="me-1" id="themeIcon"></i>
+                        <span id="themeText">Light Mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="text-light mb-3">Route Optimizer</h6>
+                    <p class="text-muted mb-0">
+                        Optimize your travel routes efficiently with our advanced routing algorithm.
+                        Powered by OpenRouteService.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="text-muted">
+                        <small>© 2025 Route Optimizer. All rights reserved.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Theme Switcher -->
+    <script>
+        // Initialize theme from localStorage or default to dark
+        document.documentElement.setAttribute('data-bs-theme', 
+            localStorage.getItem('theme') || 'dark');
+
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+
+        function updateThemeUI(isDark) {
+            themeIcon.setAttribute('data-feather', isDark ? 'sun' : 'moon');
+            themeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            feather.replace();
+        }
+
+        // Set initial UI state
+        updateThemeUI(document.documentElement.getAttribute('data-bs-theme') === 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeUI(newTheme === 'dark');
+        });
+    </script>
+
+    <!-- Initialize Feather Icons -->
+    <script>
+        feather.replace();
+    </script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

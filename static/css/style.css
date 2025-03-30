@@ -1,0 +1,256 @@
+/* Map container styles */
+#map {
+    width: 100%;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px var(--shadow);
+}
+
+/* Numbered marker styles */
+.numbered-marker {
+    background: none;
+    border: none;
+}
+
+.marker-number {
+    width: 30px;
+    height: 30px;
+    background-color: #3b82f6;  /* Modern blue */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 5px var(--shadow);
+    transition: all 0.2s ease;
+}
+
+.marker-number:hover {
+    transform: scale(1.1);
+    background-color: #2563eb;  /* Darker blue on hover */
+}
+
+/* Theme-specific styles */
+[data-bs-theme="light"] {
+    --bg-card: #ffffff;  /* Pure white background */
+    --bg-hover: #f1f5f9;  /* Light smoke grey for hover states */
+    --border-color: #e2e8f0;  /* Subtle grey border */
+    --text-color: #000000;  /* Pure black text */
+    --text-muted: #475569;  /* Dark grey for secondary text */
+    --shadow: rgba(0, 0, 0, 0.05);  /* Subtle shadow */
+}
+
+[data-bs-theme="dark"] {
+    --bg-card: rgba(30, 41, 59, 0.5);
+    --bg-hover: rgba(59, 130, 246, 0.2);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-color: #ffffff;
+    --text-muted: #a0aec0;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Add body background styles */
+body {
+    background-color: var(--bg-hover);
+    color: var(--text-color);
+}
+
+/* Location sequence list styles */
+.location-sequence {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-color);
+}
+
+.location-sequence-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    gap: 1rem;
+    transition: all 0.2s ease;
+    color: var(--text-color);
+}
+
+.location-sequence-item:hover {
+    background-color: var(--bg-hover);
+}
+
+.location-sequence-item:last-child {
+    border-bottom: none;
+}
+
+.sequence-number {
+    width: 24px;
+    height: 24px;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+/* Direction list styles */
+.directions-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    background: var(--bg-card);
+}
+
+.direction-step {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    color: var(--text-color);
+}
+
+.direction-step:hover {
+    background-color: var(--bg-hover);
+}
+
+.direction-step:last-child {
+    border-bottom: none;
+}
+
+.direction-step .instruction {
+    flex: 1;
+    margin-right: 1rem;
+    color: var(--text-color);
+}
+
+.direction-step .distance {
+    color: #38bdf8;
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+/* Form styles */
+.location-input {
+    margin-bottom: 0.5rem;
+    border-color: var(--border-color);
+    background-color: var(--bg-card);
+    color: var(--text-color);
+    transition: all 0.2s ease;
+}
+
+.location-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+    background-color: var(--bg-card);
+    color: var(--text-color);
+}
+
+/* Label styles */
+.form-label {
+    color: var(--text-color) !important;
+    font-weight: 500;
+}
+
+.btn-outline-secondary {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+/* Cards and containers */
+.card {
+    border: none;
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px var(--shadow);
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow);
+}
+
+.card-header {
+    background: var(--bg-hover) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+    color: var(--text-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    border-radius: 0.375rem;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* Theme toggle button */
+#themeToggle {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+}
+
+#themeToggle:hover {
+    transform: translateY(-1px);
+}
+
+/* Footer styles */
+.footer {
+    background-color: var(--bs-dark);
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #map {
+        height: 50vh !important;
+    }
+
+    .direction-step {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .direction-step .distance {
+        margin-top: 0.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    #themeToggle {
+        margin-top: 1rem;
+    }
+}
